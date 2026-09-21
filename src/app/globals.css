@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Sora", system-ui, sans-serif;
+    --font-sans: "Manrope", system-ui, sans-serif;
+  }
+
+  * {
+    @apply border-ink-100;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-white text-ink-900 font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    /* Évite tout défilement horizontal parasite sur mobile (ne casse pas position: sticky). */
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-ink-950;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    @apply bg-brand-600 text-white;
+  }
+
+  /* Focus visibles et accessibles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white rounded-sm;
+  }
+
+  /* Scrollbar discrete */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-200 rounded-full border-2 border-solid border-transparent bg-clip-padding;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-300;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-600 via-brand-500 to-gold-400;
+  }
+
+  .gradient-text-gold {
+    @apply bg-clip-text text-transparent bg-gold-gradient;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-brand-700;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-1.5 w-1.5 rounded-full bg-gold-400;
+  }
+
+  .card-surface {
+    @apply rounded-3xl border border-ink-100 bg-white shadow-soft;
+  }
+
+  .prose-content {
+    @apply prose prose-lg max-w-none prose-headings:font-display prose-headings:text-ink-950 prose-p:text-ink-600 prose-strong:text-ink-900 prose-a:text-brand-700 prose-img:rounded-2xl;
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+
+  /* Contenu de l'editeur TipTap back-office */
+  .admin-prose {
+    @apply text-ink-800;
+  }
+  .admin-prose h2 {
+    @apply mb-2 mt-5 font-display text-xl font-bold text-ink-950;
+  }
+  .admin-prose h3 {
+    @apply mb-1.5 mt-4 font-display text-base font-bold text-ink-950;
+  }
+  .admin-prose p {
+    @apply my-2.5;
+  }
+  .admin-prose ul {
+    @apply my-2.5 list-disc space-y-1 pl-5;
+  }
+  .admin-prose ol {
+    @apply my-2.5 list-decimal space-y-1 pl-5;
+  }
+  .admin-prose blockquote {
+    @apply my-3 border-l-4 border-gold-300 bg-cream px-4 py-2 italic text-ink-600;
+  }
+  .admin-prose a {
+    @apply font-medium text-brand-700 underline underline-offset-2;
+  }
+  .admin-prose img {
+    @apply my-4 rounded-xl;
+  }
+  .admin-prose p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    @apply pointer-events-none float-left h-0 text-ink-300;
+  }
+}
+
+@layer utilities {
+  .pause-on-hover:hover * {
+    animation-play-state: paused;
+  }
+
+  /* Masque la barre de défilement des carrousels tactiles (mobile). */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Accessibilité & fluidité : couper les animations continues / coûteuses
+   quand l'utilisateur demande moins d'animations. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-ken-burns,
+  .animate-ping,
+  .animate-pulse-ring {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,83 @@
+import {
+  Plane,
+  Ship,
+  Share2,
+  GraduationCap,
+  Briefcase,
+  PlaneTakeoff,
+  Globe,
+  FileCheck2,
+  Warehouse,
+  Truck,
+  Package,
+  Boxes,
+  ShieldCheck,
+  Search,
+  Camera,
+  MousePointerClick,
+  Palette,
+  Users,
+  Megaphone,
+  MonitorSmartphone,
+  BadgeCheck,
+  Compass,
+  Home,
+  Video,
+  Sparkles,
+  Handshake,
+  ClipboardCheck,
+  Scale,
+  PackageCheck,
+  Ruler,
+  Tags,
+  FileSearch,
+  type LucideIcon,
+} from "lucide-react";
+
+const REGISTRY: Record<string, LucideIcon> = {
+  plane: Plane,
+  ship: Ship,
+  share: Share2,
+  graduation: GraduationCap,
+  briefcase: Briefcase,
+  "plane-takeoff": PlaneTakeoff,
+  globe: Globe,
+  "file-check": FileCheck2,
+  warehouse: Warehouse,
+  truck: Truck,
+  package: Package,
+  boxes: Boxes,
+  shield: ShieldCheck,
+  search: Search,
+  camera: Camera,
+  click: MousePointerClick,
+  palette: Palette,
+  users: Users,
+  megaphone: Megaphone,
+  monitor: MonitorSmartphone,
+  badge: BadgeCheck,
+  compass: Compass,
+  home: Home,
+  video: Video,
+  sparkles: Sparkles,
+  handshake: Handshake,
+  "clipboard-check": ClipboardCheck,
+  scale: Scale,
+  "package-check": PackageCheck,
+  ruler: Ruler,
+  tags: Tags,
+  "file-search": FileSearch,
+};
+
+export function Icon({
+  name,
+  size = 24,
+  className,
+}: {
+  name?: string | null;
+  size?: number;
+  className?: string;
+}) {
+  const Cmp = (name && REGISTRY[name]) || Sparkles;
+  return <Cmp size={size} className={className} aria-hidden />;
+}

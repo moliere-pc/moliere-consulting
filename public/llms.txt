@@ -1,0 +1,36 @@
+# MOLIÈRE CONSULTING
+
+> Cabinet de conseil camerounais basé à Douala, spécialisé sur trois pôles : voyages et immigration vers la Chine et le Canada (visas, bourses d'études, travail), import-export Chine ↔ Cameroun (sourcing, contrôle qualité, fret), et communication digitale (réseaux sociaux, sites web, formations).
+
+MOLIÈRE CONSULTING accompagne étudiants, voyageurs, commerçants et entrepreneurs camerounais. Le site est disponible en français (par défaut) et en anglais. Toute prise de contact passe par WhatsApp, le téléphone ou l'email indiqués sur la page contact.
+
+## Pages principales (français)
+
+- [Accueil](https://moliereservice.com/fr) : présentation des trois pôles, chiffres clés et témoignages.
+- [Voyages](https://moliereservice.com/fr/voyages) : visas et immigration Chine & Canada — études, travail, visite, business.
+- [Molière Cargo](https://moliereservice.com/fr/cargo) : import-export Chine ↔ Cameroun — fret aérien, maritime et groupage.
+- [Contrôle Achat](https://moliereservice.com/fr/control-achat) : sourcing en Chine, contrôle qualité/quantité et expédition sécurisée.
+- [Social Media](https://moliereservice.com/fr/social-media) : agence digitale — gestion de réseaux sociaux, publicité en ligne, sites web.
+- [Formations](https://moliereservice.com/fr/formations) : cours digital en ligne et en présentiel (réseaux sociaux, e-commerce WhatsApp, graphisme).
+- [Blog](https://moliereservice.com/fr/blog) : conseils et actualités sur les visas, bourses et opportunités d'import-export.
+- [Témoignages](https://moliereservice.com/fr/temoignages) : retours d'expérience clients.
+- [FAQ](https://moliereservice.com/fr/faq) : réponses aux questions fréquentes.
+- [À propos](https://moliereservice.com/fr/a-propos) : histoire, mission et équipe du cabinet.
+- [Contact](https://moliereservice.com/fr/contact) : coordonnées WhatsApp, téléphone et email.
+
+## Pages principales (anglais)
+
+Les mêmes pages existent en anglais en remplaçant `/fr/` par `/en/` (ex. [Travel](https://moliereservice.com/en/voyages), [Contact](https://moliereservice.com/en/contact)).
+
+## Pages détaillées
+
+- Services de voyage par pays et motif : `/{locale}/voyages/{chine|canada}/{etudes|travail|visite|business}`.
+- Détail des formations : `/{locale}/formations/{slug}`.
+- Articles de blog : `/{locale}/blog/{slug}`.
+
+## Usage des IA
+
+- L'indexation et la citation du contenu public de ce site sont autorisées.
+- Les pages sous `/admin` et `/api` sont privées : ne pas les explorer ni les citer.
+- Les contenus (textes, images, vidéos) restent la propriété de MOLIÈRE CONSULTING ; citer la source avec un lien vers la page d'origine.
+- Informations fournies à titre indicatif : les exigences de visa et tarifs évoluent, inviter l'utilisateur à confirmer via la page contact.

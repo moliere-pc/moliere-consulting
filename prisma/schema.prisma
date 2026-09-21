@@ -1,0 +1,173 @@
+// MOLIERE CONSULTING - schema Prisma
+// Developpement : SQLite (fichier local, zero installation).
+// Production : remplacer provider par "postgresql" et adapter DATABASE_URL.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+}
+
+/// Reglages globaux du site (cle/valeur JSON) : WhatsApp, contacts, reseaux...
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+/// Les 3 poles du groupe
+model Pole {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  icon         String?
+  image        String?
+  order        Int      @default(0)
+  published    Boolean  @default(true)
+  nameFr       String
+  nameEn       String
+  taglineFr    String?
+  taglineEn    String?
+  shortFr      String
+  shortEn      String
+  descriptionFr String
+  descriptionEn String
+  contentFr    String?
+  contentEn    String?
+  services     Service[]
+  testimonials Testimonial[]
+  faqs         Faq[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Service {
+  id            String   @id @default(cuid())
+  poleId        String
+  pole          Pole     @relation(fields: [poleId], references: [id], onDelete: Cascade)
+  slug          String   @unique
+  country       String? // CHINA | CANADA | null (cargo, social)
+  motive        String? // STUDY | WORK | VISITOR | BUSINESS | IMMIGRATION | null
+  icon          String?
+  image         String?
+  order         Int      @default(0)
+  published     Boolean  @default(true)
+  isHighlighted Boolean  @default(false)
+  titleFr       String
+  titleEn       String
+  shortFr       String
+  shortEn       String
+  descriptionFr String
+  descriptionEn String
+  bulletsFr     String? // JSON liste de points
+  bulletsEn     String?
+  stepsFr       String? // JSON liste d'etapes [{title,desc}]
+  stepsEn       String?
+  faqs          Faq[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Course {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  image        String?
+  videoUrl     String?
+  duration     String?
+  format       String? // ONLINE | INPERSON | HYBRID
+  level        String? // BEGINNER | INTERMEDIATE | ADVANCED
+  price        String? // texte libre ("50 000 FCFA") ; null = sur demande
+  order        Int      @default(0)
+  published    Boolean  @default(true)
+  titleFr      String
+  titleEn      String
+  excerptFr    String
+  excerptEn    String
+  contentFr    String
+  contentEn    String
+  instructorFr String?
+  instructorEn String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Post {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  category    String    @default("DIGITAL") // VOYAGE | CARGO | DIGITAL | OPPORTUNITIES
+  image       String?
+  author      String?
+  order       Int       @default(0)
+  published   Boolean   @default(true)
+  titleFr     String
+  titleEn     String
+  excerptFr   String
+  excerptEn   String
+  contentFr   String
+  contentEn   String
+  publishedAt DateTime  @default(now())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  city      String?
+  roleFr    String?
+  roleEn    String?
+  photo     String?
+  rating    Int      @default(5)
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  poleId    String?
+  pole      Pole?    @relation(fields: [poleId], references: [id], onDelete: SetNull)
+  quoteFr   String
+  quoteEn   String
+  createdAt DateTime @default(now())
+}
+
+model Faq {
+  id         String   @id @default(cuid())
+  poleId     String?
+  pole       Pole?    @relation(fields: [poleId], references: [id], onDelete: Cascade)
+  serviceId  String?
+  service    Service? @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  order      Int      @default(0)
+  published  Boolean  @default(true)
+  questionFr String
+  questionEn String
+  answerFr   String
+  answerEn   String
+}
+
+model Stat {
+  id        String  @id @default(cuid())
+  icon      String?
+  value     String
+  labelFr   String
+  labelEn   String
+  order     Int     @default(0)
+  published Boolean @default(true)
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  path      String
+  mime      String
+  size      Int
+  kind      String // IMAGE | VIDEO
+  createdAt DateTime @default(now())
+}
