@@ -8,6 +8,9 @@
 /out/
 next-env.d.ts
 
+# TypeScript build info
+*.tsbuildinfo
+
 # Production
 /build
 
@@ -22,7 +25,11 @@ next-env.d.ts
 
 # Env
 .env
-.env*.local
+.env.*
+!.env.example
+
+# Configuration npm locale (registry miroir propre à cette machine)
+.npmrc
 
 # Debug
 npm-debug.log*
